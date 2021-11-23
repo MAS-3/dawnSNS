@@ -49,9 +49,23 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|string|max:255',
+            //ルール
+            'username' => 'required|string|min:4|max:25',
             'mail' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:4|confirmed',
+            'password' => 'required|string|min:4|max:255|same:password-confirm',
+            'password-confirm' => 'required'
+        ],[
+            //カスタムエラーメッセージ
+            'required' => '入力必須項目です',
+            'string' => '文字を入力してください',
+            'username.min' => '4文字以上で入力してください',
+            'username.max' => '25文字以内で入力してください',
+            'mail.unique' => '既に登録されているアドレスです',
+            'mail.min' => '4文字以上で入力してください',
+            'mail.max' => '255文字以内で入力してください',
+            'password.min' => '4文字以上で入力してください',
+            'password.max' => '255文字以内で入力してください',
+            'password.same' => 'パスワード確認蘭と入力が異なります',
         ]);
     }
 
@@ -61,6 +75,8 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
+// ユーザー作成処理
     protected function create(array $data)
     {
         return User::create([
@@ -71,21 +87,31 @@ class RegisterController extends Controller
     }
 
 
-    // public function registerForm(){
-    //     return view("auth.register");
-    // }
-
+// 新規ユーザー登録
     public function register(Request $request){
         if($request->isMethod('post')){
             $data = $request->input();
 
-            $this->create($data);
-            return redirect('added');
+            //バリデーション
+            $val = $this->validator($data);
+
+            if ($val->fails()) {
+                //リダイレクト
+                return redirect('register')
+                    ->withErrors($val)
+                    ->withInput();
+            }else{
+                //ユーザー登録処理
+                $this->create($data);
+                return redirect('added');
+            }
         }
         return view('auth.register');
     }
 
     public function added(){
-        return view('auth.added');
+        $registeredUser = User::latest()
+                        ->first();
+        return view('auth.added',['registeredUser' => $registeredUser]);
     }
 }

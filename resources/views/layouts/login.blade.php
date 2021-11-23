@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <!--IEブラウザ対策-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
-    <title></title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <title>DAWNSNS</title>
+    <link rel="stylesheet" href="{{asset('css/reset.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -17,47 +17,87 @@
     <link rel="icon" href="画像URL" sizes="62x62" type="image/png" />
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
-    <!--OGPタグ/twitterカード-->
+    <!-- font-awesome -->
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+     <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="{{asset('/js/script.js')}}"></script>
 </head>
 <body>
-    <header>
-        <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
-                </ul>
+
+    <header class="login">
+        <div class="login_header_w">
+            <!-- DAWNロゴ -->
+            <div class="login_header_l">
+                <h1></h1>
+                <div class="logo">
+                    <a href="top">
+                        <img src="{{asset('images/main_logo.png')}}">
+                    </a>
+                </div>
+            </div>
+
+
+            <div  class="login_header_r">
+                <!-- ユーザーステータス -->
+                <div id="user_status">
+                    <div class="block">
+                        <a class="neumo" href="">
+                            <p class="follow_num">
+                                {{$followedCount}}
+                                <span class="small">FOLLOWING</span>
+                            </p>
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </div>
+                    <div class="block">
+                        <a class="neumo" href="">
+                            <p class="follow_num">
+                                {{$followerCount}}
+                                <span class="small">FOLLOWED</span>
+                            </p>
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </div>
+                    <div class="block">
+                        <p class="btn search">
+                            <a class="neumo" href="/search"><i class="fas fa-search"></i><i class="fas fa-users"></i></a>
+                        </p>
+                    </div>
+                </div>
+
+
+                <!-- ユーザー名(アコーディオンボタン) -->
+                <div id="" class="login_user">
+                    <a class="neumo usr" href="">
+                        <img src="{{asset('images/'.$auth->images)}}" alt="">
+                        <p><i class="fas fa-sort-down"></i></p>
+                    </a>
+                </div>
+
+                <!-- アコーディオンメニュー -->
+                <div class="accordion">
+                    <ul>
+                        {{$auth->username}}さん
+                        <li><a href="/top">ホーム</a></li>
+                        <li><a href="/profile">プロフィール</a></li>
+                        <li><a href="/logout">ログアウト</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
+
     </header>
+
     <div id="row">
+
         <div id="container">
             @yield('content')
         </div >
-        <div id="side-bar">
-            <div id="confirm">
-                <p>〇〇さんの</p>
-                <div>
-                <p>フォロー数</p>
-                <p>〇〇名</p>
-                </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
-                <div>
-                <p>フォロワー数</p>
-                <p>〇〇名</p>
-                </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
-            </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
-        </div>
+
     </div>
-    <footer>
-    </footer>
+
+
     <script src="JavaScriptファイルのURL"></script>
     <script src="JavaScriptファイルのURL"></script>
 </body>

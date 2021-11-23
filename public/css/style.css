@@ -1,22 +1,440 @@
 @charset "utf-8";
+
+
+/*
+primary_1
+color: rgb(154,199,217);
+
+primary_2
+color: rgb(44,123,191);
+
+primary_3
+color: rgb(33,101,191);
+
+background
+color : #F9F9F9;
+
+attention_1
+color: rgb(11,56,191);
+
+attention_2
+color: rgb(2,31,89);
+
+font
+color: #222222;
+*/
+
+
+
+/*
+styleここから
+*/
+
+/*
+============== common ==============
+*/
+
 html{
-}
-body{
-}
-/* header */
-header{
-    background:#3C4767;
+    font-size: 12px;
+    color: #222222;
 }
 
-/* main content */
-#row{
+body{
+    text-decoration: none;
+}
+
+header{
+    background:rgba(154,199,217,1);
+    z-index: 999;
+}
+
+a{
+    color: #222222;
+}
+
+a:hover{
+    opacity:0.6;
+}
+
+h1{
+    font-size: 2.5rem;
+}
+
+h2{
+    font-size: 1.5rem;
+}
+
+h3{
+     font-size: 1.3rem;
+}
+
+img{
+    width: 100%;
+}
+
+.flex{
     display: flex;
-    flex-flow: row wrap;
 }
+
+.btn{
+    border-radius: 5px;
+
+}
+
 #container{
-    flex: 0 0 80%;
+    padding-top: 50px;
 }
-#side-bar{
-    flex: 0 0 19%;
-    border-left: 1px solid #6C6C6C;
+
+/*ニューモーフィスム*/
+.neumo{
+    border-radius: 999px;
+    box-shadow: -2px -2px 5px rgb(255 255 255),
+                3px 3px 5px rgb(0 0 0 / 10%);
+}
+
+.neumo:active{
+/*ニューモーフィスム*/
+    box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 1),
+              inset 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+/*
+======================================
+                 logout
+======================================
+*/
+
+
+/*
+======================================
+                 login
+======================================
+*/
+
+/*
+=============== header ===============
+*/
+
+header.login{
+    width: 100%;
+    color: #fff;
+    position: fixed;
+    box-shadow: 0 1px 5px 0 rgb(0 0 0 / 30%);
+}
+
+.login .login_header_w{
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+header.login .login_header_r a{
+    padding: 10px 10px;
+    display: inline-flex;
+    gap: 0 5px;
+    color: #fff;
+    text-align: center;
+    align-items: center;
+}
+
+header.login .login_header_r a.usr{
+    padding: 3px 5px;
+}
+
+header.login .small{
+    font-size: 0.8rem;
+}
+
+header .btn{
+}
+
+header .btn.search{
+}
+
+#user_status{
+    display: flex;
+    gap: 0 10px;
+}
+
+/*left*/
+.login_header_l{
+    width: 50%;
+}
+
+.login_header_l .logo{
+    width: 100px;
+    margin-top: 5px;
+}
+
+/*right*/
+.login_header_r{
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 0 10px;
+}
+
+.login_header_r .block{
+    padding-top: 5px;
+}
+
+.login_header_r .follow_num{
+}
+header.login .login_user{
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+}
+
+header.login .login_user img{
+    width: 30px;
+    border-radius: 50%;
+}
+
+/*accordion*/
+header.login .accordion{
+    display: none;
+    position: absolute;
+    top: 100px;
+    right: 0;
+}
+
+/*
+===============   TOP   ===============
+*/
+
+.top{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.time_line{
+    height: 100vh;
+    background-color: #F9F9F9;
+}
+
+.timeline .tw_user{
+    width: 20%;
+    display: block;
+}
+
+.timeline .tw_posts{
+    width: 60%;
+    display: block;
+}
+
+.timeline .tw_r{
+}
+
+/*
+新規投稿
+*/
+.tweet_post{
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(44,123,191);
+    z-index: 999;
+}
+
+.tweet_post form{
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    position: relative;
+}
+
+.tweet_post .tw_input_wrapper{
+    display: block;
+}
+
+.tweet_post .tw_input{
+    width: 30vw;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.tw_post_btn{
+    padding:5px 10px;
+    color: #fff;
+    border: none;
+    background: rgba(44,123,191,1);
+}
+
+.tw_post_btn:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+/*
+タイムライン
+*/
+
+.time_line {
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    padding-top: 40px;
+    padding-bottom: 80px;
+    box-shadow: 0 1px 5px 0 rgb(0 0 0 / 30%);
+}
+
+.tweet{
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 0 10px;
+}
+
+/*ユーザー情報*/
+.time_line .tw_user{
+    text-align: center;
+}
+
+.time_line .tw_user img{
+    width: 50px;
+    border-radius: 50%;
+}
+
+.time_line .tw_user p{
+    padding-top: 10px;
+}
+
+/*投稿*/
+.time_line .tw_posts{
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+    overflow-wrap: break-word;
+    box-shadow: 0 1px 5px 0 rgb(0 0 0 / 30%);
+}
+
+.time_line .tw_posts .posts{
+    height: 100%;
+}
+
+.time_line p.created_at{
+    font-size: 9px;
+    overflow-wrap: break-word;
+}
+
+/*投稿時間、その他ボタン*/
+.time_line .tw_r{
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.time_line .tw_r .tw_btns{
+    padding-top: 10px;
+}
+
+.time_line .tw_r .btn{
+    width: 50px;
+    padding: 8px 8px;
+    text-align: center;
+}
+
+.time_line .tw_r .created_at{
+    position: absolute;
+    top: 50px;;
+}
+
+/*
+投稿編集モーダル
+*/
+.modal-main{
+    display: none;
+}
+
+.modal-main form{
+    padding-bottom: 15px;
+}
+
+.modal-main form .edit_tweet_input{
+    border: none;
+    padding: 5px;
+    border-radius: 999px;
+    box-shadow: 0 1px 5px 0 rgb(0 0 0 / 30%);
+}
+
+.edit_tweet_btn{
+    padding: 5px 10px;
+    border: none;
+    background: rgba(249,249,249,1);
+}
+
+.edit_tweet_btn:hover{
+    opacity: .5;
+    cursor: pointer;
+}
+
+/*
+===============  ユーザー検索  ===============
+*/
+
+.search_blade{
+    width: 80%;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 1px 5px 0 rgb(0 0 0 / 30%);
+}
+
+
+/*
+ユーザー検索窓
+*/
+.search_blade .search_window{
+    width: 1000px;
+    padding: 20px 0;
+    margin: 0 auto;
+    display: flex;
+}
+
+.search_blade .search_window form{
+    display: flex;
+}
+
+
+/*
+ユーザーリスト
+*/
+
+
+/*アイコン周り*/
+.user_list{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.user_list .list_container{
+    display: flex;
+}
+
+.search_blade .user_icon{
+    width: 50px;
+    text-align: center;
+}
+
+/*センター要素*/
+.search_blade .user_bio{
+    flex-basis: 60%;
+}
+
+/*フォローボタン*/
+.search_blade .follow_btn{
+    flex-basis: 20%;
 }

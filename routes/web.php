@@ -18,26 +18,93 @@
 
 //Auth::routes();
 
-
+// ====================================================
 //ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login');
-Route::post('/login', 'Auth\LoginController@login');
+// ====================================================
 
-Route::get('/register', 'Auth\RegisterController@register');
-Route::post('/register', 'Auth\RegisterController@register');
+// ログイン
+Route::get('/login',
+            'Auth\LoginController@login'
+            )
+        ->name('login');
 
-Route::get('/added', 'Auth\RegisterController@added');
+Route::post('/login',
+             'Auth\LoginController@login'
+            )
+        ->name('login');
 
 
+//ユーザー新規登録
+Route::get('/register',
+             'Auth\RegisterController@register'
+            );
+Route::post('/register',
+             'Auth\RegisterController@register'
+            );
+
+//登録完了画面
+Route::get('/added',
+            'Auth\RegisterController@added'
+            );
+
+// ====================================================
 //ログイン中のページ
-Route::get('/top','PostsController@index');
+// ====================================================
 
-Route::get('/profile','UsersController@profile');
+// トップ画面
+Route::get('/top',
+            'PostsController@index'
+            )
+        ->name('top');
+// 新規投稿
+Route::post('/createTweet',
+            'PostsController@createTweet'
+            )
+        ->name('createTweet');
+//編集
+Route::post('/editTweet',
+            'PostsController@editTweet'
+            )
+        ->name('editTweet');
+//削除
+Route::get('/deleteTweet/{id}',
+            'PostsController@deleteTweet'
+            )
+        ->name('deleteTweet');
+// ログインユーザープロフィール
+Route::get('/profile',
+            'UsersController@profile'
+            );
 
-Route::get('/search','UsersController@index');
+//ユーザー検索
+Route::get('/search',
+            'UsersController@search'
+            )
+        ->name('userSearch');
+Route::post('/search',
+            'UsersController@search'
+            )
+        ->name('userSearch');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+//フォローをする
+Route::get('/follow/{id}',
+            'UsersController@followBtn'
+            )
+        ->name('followBtn');
 
+//フォローを外す
+Route::get('/unfollow/{id}',
+            'UsersController@unfollowBtn'
+            )
+        ->name('followBtn');
 
+// フォローリスト画面
+Route::get('/follow-list',
+            'PostsController@index'
+            );
 
+// フォロワーリスト
+Route::get('/follower-list',
+            'PostsController@index'
+            );
+// ====================================================
