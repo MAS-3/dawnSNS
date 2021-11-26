@@ -98,13 +98,19 @@ Route::get('/unfollow/{id}',
             )
         ->name('followBtn');
 
+
 // フォローリスト画面
-Route::get('/follow-list',
-            'PostsController@index'
+Route::get('/following',
+            'FollowsController@followingList'
             );
 
 // フォロワーリスト
-Route::get('/follower-list',
-            'PostsController@index'
+Route::get('/followed',
+            'FollowsController@followedList'
+            );
+
+//ログアウト
+Route::get('/logout',
+            'Auth\LoginController@logout'
             );
 // ====================================================

@@ -4,6 +4,7 @@
 
 <div class="top">
 
+
 <!-- 新規投稿 -->
 <div class="tweet_post">
     <form class="tw_post_container" action="createTweet" method="POST">
@@ -24,6 +25,11 @@
 
 <!-- タイムライン -->
 <div class="time_line">
+
+    <div class="head_line">
+        <h2>TIMELINE</h2>
+    </div>
+
     @foreach($tweets as $tweets)
                 <div class="tweet flex">
                     <!-- ユーザー情報 -->

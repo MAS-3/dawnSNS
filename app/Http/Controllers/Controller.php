@@ -30,7 +30,7 @@ class Controller extends BaseController
 
             // フォロワー人数カウント
             $followerCount = \DB::table('follows')
-                ->where('followed',$auth->id)
+                ->where('following',$auth->id)
                 ->count();
 
             View::share('auth', $auth);

@@ -42,7 +42,7 @@
                 <!-- ユーザーステータス -->
                 <div id="user_status">
                     <div class="block">
-                        <a class="neumo" href="">
+                        <a class="neumo" href="following">
                             <p class="follow_num">
                                 {{$followedCount}}
                                 <span class="small">FOLLOWING</span>
@@ -51,10 +51,10 @@
                         </a>
                     </div>
                     <div class="block">
-                        <a class="neumo" href="">
+                        <a class="neumo" href="follower">
                             <p class="follow_num">
                                 {{$followerCount}}
-                                <span class="small">FOLLOWED</span>
+                                <span class="small">FOLLOWER</span>
                             </p>
                             <i class="fas fa-bars"></i>
                         </a>
@@ -68,8 +68,8 @@
 
 
                 <!-- ユーザー名(アコーディオンボタン) -->
-                <div id="" class="login_user">
-                    <a class="neumo usr" href="">
+                <div id="" class="login_user accordion_btn">
+                    <a class="neumo usr">
                         <img src="{{asset('images/'.$auth->images)}}" alt="">
                         <p><i class="fas fa-sort-down"></i></p>
                     </a>
@@ -78,10 +78,10 @@
                 <!-- アコーディオンメニュー -->
                 <div class="accordion">
                     <ul>
-                        {{$auth->username}}さん
-                        <li><a href="/top">ホーム</a></li>
-                        <li><a href="/profile">プロフィール</a></li>
-                        <li><a href="/logout">ログアウト</a></li>
+                        <li class="username">LOGIN：{{$auth->username}}さん</li>
+                        <li><a class="js_line" href="/top">HOME</a></li>
+                        <li><a class="js_line" href="/profile">PROFILE</a></li>
+                        <li><a class="js_line" href="/logout">LOGOUT</a></li>
                     </ul>
                 </div>
             </div>
