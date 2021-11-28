@@ -15,8 +15,11 @@ class AddedRememverTokenUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            #remember_token型カラムをpasswordカラムの後ろに追加する
-            $table->string('remember_token')->after('images');
+            //remember_token型カラムをpasswordカラムの後ろに追加する
+            $table->string('remember_token')
+                    ->after('images')
+                    ->nullable()
+                    ->default('NULL');
         });
     }
 

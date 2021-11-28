@@ -43,7 +43,6 @@ class LoginController extends Controller
     {
         if($request->isMethod('post')){
 
-
             $data=$request->only('mail','password');
             // ログインが成功したら、トップページへ
             //↓ログイン条件は公開時には消すこと

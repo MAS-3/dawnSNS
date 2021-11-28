@@ -25,11 +25,17 @@
 
 <!-- タイムライン -->
 <div class="time_line">
-
     <div class="head_line">
         <h2>TIMELINE</h2>
     </div>
 
+    <!-- 未投稿フォローなし -->
+    @if(empty($tweets[0]->posts))
+        <div class="post_empty">
+            <p>投稿してみよう！</p>
+            <p>誰かをフォローすると投稿が見れるよ！</p>
+        </div>
+    @endif
     @foreach($tweets as $tweets)
                 <div class="tweet flex">
                     <!-- ユーザー情報 -->
