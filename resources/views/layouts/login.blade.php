@@ -51,10 +51,10 @@
                         </a>
                     </div>
                     <div class="block">
-                        <a class="neumo" href="follower">
+                        <a class="neumo" href="followed">
                             <p class="follow_num">
                                 {{$followerCount}}
-                                <span class="small">FOLLOWER</span>
+                                <span class="small">FOLLOWED</span>
                             </p>
                             <i class="fas fa-bars"></i>
                         </a>

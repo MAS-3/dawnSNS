@@ -6,17 +6,34 @@
 <div class="page-wrapper">
     <!-- コンテナ -->
 
+<?php if ($pageName == 'FollowingList'): ?>
     <div class="head_line">
-        <h2>FOLLOWER LIST</h2>
+        <h2>FOLLOWING USER LIST</h2>
     </div>
 
-    <!-- フォローなし -->
-    @if(empty($followingTweet[0]->username))
+    <!-- フォローなしメッセージ -->
+    @if(empty($followTweet[0]->username))
         <div class="post_empty">
             <p>まずは誰かをフォローしてみよう！</p>
         </div>
     @endif
-    @foreach($followingTweet as $list)
+
+<?php elseif ($pageName == 'FollowedList'):?>
+    <div class="head_line">
+        <h2>FOLLOWED USER LIST</h2>
+    </div>
+
+    <!-- フォロワーーなしメッセージ -->
+    @if(empty($followTweet[0]->username))
+        <div class="post_empty">
+            <p>たくさん投稿をして、フォロワーを増やそう！</p>
+        </div>
+    @endif
+<?php endif;?>
+
+
+
+    @foreach($followTweet as $list)
         <div class="user_list">
             <div class=" list_container">
                 <div class="inner">
