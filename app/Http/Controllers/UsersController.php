@@ -10,7 +10,9 @@ use Auth;
 class UsersController extends Controller
 {
 
+    //=========================
     //ユーザー検索画面
+    //=========================
     public function search(Request $request){
         if ($request->isMethod('post')) {
             // 検索結果表示
@@ -55,7 +57,9 @@ class UsersController extends Controller
     }
 
 
-    // プロフィール編集画面
+    //=========================
+    //プロフィール編集画面
+    //=========================
     public function profile(Request $request){
 
         $userData = Auth::user();

@@ -13,27 +13,37 @@ class FollowsController extends Controller
     //=========================
     public function followingList(){
         // ページ名
-        $pageName = 'FollowingList';
+        $page_name = 'following_list';
 
         //ユーザーアイコン
-        $followingIcon = DB::table('follows')
+        $following_icon = DB::table('follows')
                             ->leftJoin('users', 'follows.following', '=', 'users.id')
                             ->where('follows.follower', '=', Auth::id())
                             ->get();
 
         //フォローユーザーツイート
-        $followingTweet = DB::table('follows')
-                            ->join('users', 'follows.follower', '=', 'users.id')
-                            ->join('posts', 'users.id' , '=' ,'posts.user_id')
+        $following_tweet = DB::table('follows')
+                            ->join('users', 'follows.following', '=', 'users.id')
+                            ->leftJoin('posts', 'users.id' , '=' ,'posts.user_id')
                             ->where('follows.follower', '=', Auth::id())
+                            //->where('users.id','<>',Auth::id())
                             ->latest('posts.created_at')
+                            ->select(
+                                    'users.id',
+                                    'users.username',
+                                    'users.mail',
+                                    'users.images',
+                                    'users.bio',
+                                    'posts.posts'
+                                    )
                             //->groupBy('username')//エラーが出る。
                             ->get();
 
-        return view('follows.followList', [
-            'pageName' => $pageName,
-            'followIcon' => $followingIcon,
-            'followTweet' => $followingTweet
+
+        return view('follows.follow_list', [
+            'page_name' => $page_name,
+            'follow_icon' => $following_icon,
+            'follow_tweet' => $following_tweet
         ]);
     }
 
@@ -43,27 +53,43 @@ class FollowsController extends Controller
     //=========================
     public function followedList(){
         // ページ名
-        $pageName = 'FollowedList';
+        $page_name = 'followed_list';
 
         //ユーザーアイコン
-        $followedIcon = DB::table('follows')
+        $followed_icon = DB::table('follows')
                             ->leftJoin('users', 'follows.follower', '=', 'users.id')
                             ->where('follows.follower', '=', Auth::id())
                             ->get();
 
+        //ユーザーステータス
+        $follow_status = DB::table('users')
+                ->leftJoin('follows', 'users.id', '=', 'follows.following')
+                ->where('users.id','<>', Auth::id())
+                ->select('follows.following', 'follows.follower')
+                ->get();
+
         //フォローユーザーツイート
-        $followedTweet = DB::table('follows')
+        $followed_tweet = DB::table('follows')
                             ->join('users', 'follows.following', '=', 'users.id')
                             ->leftJoin('posts', 'users.id' , '=' ,'posts.user_id')
                             ->where('follows.following', '=', Auth::id())
                             ->latest('posts.created_at')
+                            ->select(
+                                    'users.id',
+                                    'users.username',
+                                    'users.mail',
+                                    'users.images',
+                                    'users.bio',
+                                    'posts.posts'
+                                    )
                             //->groupBy('username')//エラーが出る。
                             ->get();
 
-        return view('follows.followList',[
-            'pageName' => $pageName,
-            'followIcon' => $followedIcon,
-            'followTweet' => $followedTweet
+        return view('follows.follow_list',[
+            'page_name' => $page_name,
+            'follow_icon' => $followed_icon,
+            'follow_status' => $follow_status,
+            'follow_tweet' => $followed_tweet
         ]);
     }
 
@@ -73,9 +99,50 @@ class FollowsController extends Controller
     //=========================
     public function followDetail($id){
         // ユーザーID
-        $followUserId = $id;
+        $f_user_id = $id;
 
-        
+        //ユーザープロフィール
+        $f_user_profile = DB::table('users')
+                            ->leftJoin('posts','users.id','=','posts.user_id')
+                            ->where('users.id','=',$f_user_id)
+                            ->first();
 
+        //----------------
+        //ユーザーステータス
+        //----------------
+
+        //投稿数
+        $tweets = DB::table('posts')
+                ->where('user_id','=',$id)
+                ->count();
+
+        //フォロワー
+        $f_followed = DB::table('follows')
+                ->where('following','=',$id)
+                ->count();
+        //フォロー
+        $f_following = DB::table('follows')
+                ->where('follower','=',$id)
+                ->count();
+
+        //フォローボタン
+        $f_btn = DB::table('follows')->where('following', $f_user_id)->pluck('follower')->toArray();
+
+        // ユーザー投稿
+        $f_tweet = DB::table('posts')
+                            ->leftJoin('users','posts.user_id','users.id')
+                            ->where('user_id','=',$f_user_id)
+                            ->get();
+
+        //dd($f_tweet);
+
+        return view('follows.follow_user_profile',[
+            'f_user_profile' => $f_user_profile,
+            'f_btn' => $f_btn,
+            'f_tweet' => $f_tweet,
+            'tweets' => $tweets,
+            'f_followed' => $f_followed,
+            'f_following' => $f_following
+        ]);
     }
 }

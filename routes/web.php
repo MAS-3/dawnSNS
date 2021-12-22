@@ -19,7 +19,9 @@
 //Auth::routes();
 
 // ====================================================
-//ログアウト中のページ
+//
+//              ログアウト中のページ
+//
 // ====================================================
 
 // ログイン
@@ -47,10 +49,25 @@ Route::get('/added',
             'Auth\RegisterController@added'
             );
 
+
 // ====================================================
-//ログイン中のページ
+//
+//               ログイン中のページ
+//
 // ====================================================
 
+//=====================================================
+//               Common
+//=====================================================
+
+//ログアウト
+Route::get('/logout',
+            'Auth\LoginController@logout'
+            );
+
+//=====================================================
+//               PostsController
+//=====================================================
 // トップ画面
 Route::get('/top',
             'PostsController@index'
@@ -71,6 +88,10 @@ Route::get('/deleteTweet/{id}',
             'PostsController@deleteTweet'
             )
         ->name('deleteTweet');
+
+//=====================================================
+//               UsersController
+//=====================================================
 // ログインユーザープロフィール
 Route::get('/profile',
             'UsersController@profile'
@@ -99,6 +120,9 @@ Route::get('/unfollow/{id}',
         ->name('followBtn');
 
 
+//=====================================================
+//               FollowsController
+//=====================================================
 // フォローリスト画面
 Route::get('/following',
             'FollowsController@followingList'
@@ -109,8 +133,7 @@ Route::get('/followed',
             'FollowsController@followedList'
             );
 
-//ログアウト
-Route::get('/logout',
-            'Auth\LoginController@logout'
+//フォローユーザープロフィール
+Route::get('/follow_profile/{id}',
+            'FollowsController@followDetail'
             );
-// ====================================================

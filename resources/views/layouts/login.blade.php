@@ -31,7 +31,7 @@
             <div class="login_header_l">
                 <h1></h1>
                 <div class="logo">
-                    <a href="top">
+                    <a href="/top">
                         <img src="{{asset('images/main_logo.png')}}">
                     </a>
                 </div>
@@ -44,7 +44,7 @@
                     <div class="block">
                         <a class="neumo" href="following">
                             <p class="follow_num">
-                                {{$followedCount}}
+                                {{$followed_count}}
                                 <span class="small">FOLLOWING</span>
                             </p>
                             <i class="fas fa-bars"></i>
@@ -53,7 +53,7 @@
                     <div class="block">
                         <a class="neumo" href="followed">
                             <p class="follow_num">
-                                {{$followerCount}}
+                                {{$follower_count}}
                                 <span class="small">FOLLOWED</span>
                             </p>
                             <i class="fas fa-bars"></i>

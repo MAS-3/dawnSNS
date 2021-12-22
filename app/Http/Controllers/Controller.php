@@ -24,19 +24,19 @@ class Controller extends BaseController
             $auth = Auth::user();
 
             // フォロー人数カウント
-            $followedCount = \DB::table('follows')
+            $followed_count = \DB::table('follows')
                 ->where('follower',$auth->id)
                 ->count();
 
             // フォロワー人数カウント
-            $followerCount = \DB::table('follows')
+            $follower_count = \DB::table('follows')
                 ->where('following',$auth->id)
                 ->count();
 
             View::share('auth', $auth);
-            View::share('imageURL', asset('storage/usersIcon/'.$auth['image']));
-            View::share('followedCount', $followedCount);
-            View::share('followerCount', $followerCount);
+            View::share('image_url', asset('storage/usersIcon/'.$auth['image']));
+            View::share('followed_count', $followed_count);
+            View::share('follower_count', $follower_count);
 
             return $next($request);
         });
